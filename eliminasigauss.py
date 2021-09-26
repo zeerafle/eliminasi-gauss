@@ -36,8 +36,9 @@ def eliminasi_gauss_naif(matriks, vektor, tampilkan_solusi):
                 A[i,j] = A[k,j] - A[i,j] * faktor
             b[i] = b[k] - b[i] * faktor
     
+    click.clear()
     if tampilkan_solusi == "ya":
-        click.echo(sulih_mundur(A, b))
+        click.echo(f"Solusinya adalah x = {sulih_mundur(A, b)}")
     else:
         click.echo(np.append(A, b.reshape((-1, 1)), axis=1))
 
