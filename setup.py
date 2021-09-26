@@ -9,6 +9,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        gauss=eliminasigauss:gauss
+        gauss=eliminasigauss:eliminasi_gauss_naif
     ''',
 )

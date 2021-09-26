@@ -1,16 +1,29 @@
 import click
-import os
 import numpy as np
 
 @click.command()
-@click.argument('ordo')
-def gauss(ordo):
-    A = input_matrix(int(ordo))
-    b = input_vektor(int(ordo))
+@click.argument('matriks')
+@click.argument('vektor')
+@click.option('--tampilkan_solusi', '-s', type=click.Choice(['ya', 'tidak']))
+def eliminasi_gauss_naif(matriks, vektor, tampilkan_solusi):
+    """
+    Melakukan eliminasi gauss pada sistem persamaan linear
 
-    click.echo(eliminasi_gauss_naif(A, b))
+        Parameter: 
 
-def eliminasi_gauss_naif(A, b):
+            matriks (string): Matriks dengan kolom dipisah dengan spasi dan baris dipisah dengan titik koma
+
+            vektor (string): Vektor dengan 1 baris dengan jumlah elemen sebanyak ordo dan dipisah dengan spasi
+        
+        Returns:
+
+            Matriks teraugmentasi dengan entri dibawah diagonal utama bernilai nol
+            
+            (Jika ingin menampilkan solusi, tambahkan option '-s ya')
+    """
+    A = np.mat(matriks, dtype=np.float64)
+    b = np.array(np.mat(vektor), dtype=np.float64).reshape((-1,1))
+    
     n = len(A)
     for k in range(n-1):
         if np.fabs(A[k,k]) < 1.0e-12:
@@ -23,23 +36,10 @@ def eliminasi_gauss_naif(A, b):
                 A[i,j] = A[k,j] - A[i,j] * faktor
             b[i] = b[k] - b[i] * faktor
     
-    return np.append(A, b.reshape((-1, 1)), axis=1)
-
-def input_matrix(ordo):
-    list_matrix = []
-    for i in range(ordo):
-        baris = input(f"Masukkan entri matriks A sejumlah {ordo} kolom pada baris {i+1} dipisah dengan spasi\n")
-        list_matrix.append(baris)
-        os.system('cls' if os.name == 'nt' else 'clear')
-    string_matrix = ";".join(list_matrix)
-
-    return np.mat(string_matrix, dtype=np.float64)
-
-def input_vektor(ordo):
-    baris = input(f"Masukkan entri vektor b sebanyak {ordo} dipisah dengan spasi\n")
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    return np.array(np.mat(baris)).reshape(ordo)
+    if tampilkan_solusi == "ya":
+        click.echo(sulih_mundur(A, b))
+    else:
+        click.echo(np.append(A, b.reshape((-1, 1)), axis=1))
 
 def pivotingSebagian(A, b, loop, n):
     for i in range(loop+1, n):
@@ -48,3 +48,15 @@ def pivotingSebagian(A, b, loop, n):
             b[[loop,i]] = b[[i,loop]]
             break
     return A, b
+
+def sulih_mundur(A, b):
+    n = len(A)
+    x = np.zeros(n, float)
+    # x[n-1] = b[n-1] / A[n-1,n-1]
+    for i in range(n-1, -1, -1):
+        sigma = 0
+        for j in range(i+1, n):
+            sigma += A[i,j] * x[j]
+        x[i] = (b[i] - sigma) / A[i,i]
+    
+    return x
