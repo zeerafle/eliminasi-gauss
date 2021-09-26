@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='elminasi-gauss',
+    name='elminasigauss',
     py_modules=['eliminasigauss'],
     install_requires=[
         'Click',
