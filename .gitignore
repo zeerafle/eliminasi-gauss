@@ -142,4 +142,4 @@ cython_debug/
 .vscode
 
 # other
-SPL.py
+SPL*
