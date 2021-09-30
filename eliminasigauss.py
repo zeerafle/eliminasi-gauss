@@ -14,12 +14,10 @@ def eliminasi_gauss_naif(matriks, vektor, tampilkan_solusi):
             matriks (string): Matriks dengan kolom dipisah dengan spasi dan baris dipisah dengan titik koma
 
             vektor (string): Vektor dengan 1 baris dengan jumlah elemen sebanyak ordo dan dipisah dengan spasi
-        
+
         Returns:
 
-            Matriks teraugmentasi dengan entri dibawah diagonal utama bernilai nol
-            
-            (Jika ingin menampilkan solusi, tambahkan option '-s ya')
+            Matriks teraugmentasi dengan entri dibawah diagonal utama bernilai nol (Jika ingin menampilkan solusi, tambahkan option '-s ya')
     """
     A = np.mat(matriks, dtype=np.float64)
     b = np.array(np.mat(vektor), dtype=np.float64).reshape((-1,1))
