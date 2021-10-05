@@ -15,7 +15,7 @@ Jika tidak, download repository ini dengan klik __Code__ di halaman ini kemudian
 
 Selanjutnya jalankan kode dibawah
 ```console
-python setup.py install --record files.txt
+python setup.py install
 ```
 
 ## Penggunaan
@@ -29,7 +29,7 @@ Dengan menampilkan matriks teraugmentasi dengan entri dibawah diagonal utama ber
 
 Dimana:
 
-- `[OPTIONS]` berisi pilihan `-s` atau `--tampilkan_solusi` dengan nilai `ya` atau `tidak` (default tidak). Opsi ini berfungsi menampilkan hasil berupa solusi $x$ dalam bentuk vektor.
+- `[OPTIONS]` berisi pilihan `-s` atau `--tampilkan_solusi` dengan nilai `ya` atau `tidak` (default tidak). Opsi ini berfungsi menampilkan hasil berupa solusi ![x](https://github.com/zeerafle/eliminasi-gauss/blob/master/images/x.png?raw=true) dalam bentuk vektor.
 
 - `MATRIKS` (berbentuk string) adalah sistem persamaan linear yang sudah dibentuk menjadi matriks, elemennya suda terdefinisi didalamnya. Cara penulisannya adalah:
     - Entri kolom dipisahkan dengan spasi
@@ -42,13 +42,9 @@ Untuk melihat bantuan ketikkan `gauss --help`
 ### Contoh
 
 Untuk mendapatkan solusi sistem persamaan linear berikut
-$$
-\begin{alignat*}{4}
-    2x_1 & {}+{} &  3x_2 & {}-{} & x_3 & {}={} & 5 \\
-    4x_1 & {}+{} &  4x_2 & {}-{} & 3x_3 & {}={} &  3 \\
-    -2x_1 & {}+{} & 3x_2 & {}-{} & x_3 & {}={} & 1
-\end{alignat*}
-$$
+
+![matrix](https://github.com/zeerafle/eliminasi-gauss/blob/master/images/linear-equation-system.png?raw=true)
+
 maka jalankan perintah dibawah
 ```console
 gauss "2 3 -1;4 4 -3;-2 3 -1" "5 3 1"
@@ -72,6 +68,6 @@ Solusinya adalah x = [1. 2. 3.]
 ## Pencopotan
 
 Jalankan perintah dibawah (powershell)
-```powershell
-Get-Content files.txt | ForEach-Object {Remove-Item $_ -Recurse -Force}
+```console
+pip uninstall -r requirements.txt
 ```
