@@ -56,7 +56,7 @@ Output:
  [ 0.          0.          0.83333333  2.5       ]]
 ```
 
-Tambahkan options `-s ya` untuk menampilkan solusi $x$
+Tambahkan options `-s ya` untuk menampilkan solusi ![x](https://github.com/zeerafle/eliminasi-gauss/blob/master/images/x.png?raw=true)
 ```console
 gauss -s ya "2 3 -1;4 4 -3;-2 3 -1" "5 3 1"
 ```
@@ -67,7 +67,7 @@ Solusinya adalah x = [1. 2. 3.]
 
 ## Pencopotan
 
-Jalankan perintah dibawah (powershell)
+Jalankan perintah dibawah
 ```console
 pip uninstall -r requirements.txt
 ```
